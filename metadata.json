@@ -1,0 +1,6 @@
+{
+  "name": "VINA MAKHANA",
+  "description": "Premium luxury brand website for VINA MAKHANA, showcasing healthy makhana snacks and organic raw makhana with a seamless WhatsApp ordering system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

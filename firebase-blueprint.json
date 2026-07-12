@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "Review": {
+      "title": "Review",
+      "description": "Customer reviews of Makhana products",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "mobileNumber": { "type": "string" },
+        "productName": { "type": "string" },
+        "rating": { "type": "integer" },
+        "comment": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["customerName", "mobileNumber", "productName", "rating", "comment", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerDetails": { "type": "object" },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "whatsappLogs": { "type": "object" }
+      }
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Makhana product item details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" }
+      }
+    },
+    "WhatsAppLog": {
+      "title": "WhatsApp Log",
+      "description": "Log of WhatsApp notification actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderId": { "type": "string" },
+        "type": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string" },
+        "timestamp": { "type": "string" }
+      }
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "System settings configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Collection of all product reviews"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of customer orders"
+    },
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of store products"
+    },
+    "whatsapp-logs/{logId}": {
+      "schema": "WhatsAppLog",
+      "description": "Logs of WhatsApp messages"
+    },
+    "settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Configuration settings"
+    }
+  }
+}
