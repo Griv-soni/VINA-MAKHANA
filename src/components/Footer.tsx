@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="w-4 h-4 text-gold-accent shrink-0 mt-0.5" />
-                <span>divyangsoni18@gmail.com</span>
+                <span>vinamakhana1607@gmail.com</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-gold-accent shrink-0 mt-0.5" />

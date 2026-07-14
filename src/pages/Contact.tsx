@@ -258,6 +258,27 @@ export const Contact: React.FC = () => {
     }
   };
 
+  const [mapLoadError, setMapLoadError] = useState(false);
+  const mapQuery = 'Navkar Heights, Ognaj Circle, Ognaj, Ahmedabad - 380060';
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
+
+  const openDirections = () => {
+    const appUrl = `comgooglemaps://?q=${encodeURIComponent(mapQuery)}`;
+    const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+    const isMobile = /android|iphone|ipad|ipod/i.test(userAgent);
+
+    if (isMobile) {
+      const fallback = window.setTimeout(() => {
+        window.location.href = directionsUrl;
+      }, 1400);
+      window.location.href = appUrl;
+      window.setTimeout(() => window.clearTimeout(fallback), 1800);
+    } else {
+      window.open(directionsUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div id="contact-page" className="py-16 sm:py-24 animate-fade-in relative min-h-screen bg-brand-bg/10">
       
@@ -366,7 +387,7 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-wider text-forest-green">General Email Inbox</h3>
-                    <p className="text-sm text-walnut-brown font-semibold mt-1">divyangsoni18@gmail.com</p>
+                    <p className="text-sm text-walnut-brown font-semibold mt-1">vinamakhana1607@gmail.com</p>
                     <p className="text-[11px] text-walnut-brown/50">Same-day response time</p>
                   </div>
                 </div>
@@ -489,6 +510,187 @@ export const Contact: React.FC = () => {
             )}
           </div>
 
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative overflow-hidden rounded-[2rem] border border-white/40 bg-white/80 shadow-2xl shadow-forest-green/10 backdrop-blur-xl p-6 sm:p-8 lg:p-10"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,168,107,0.15),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(46,90,67,0.12),_transparent_30%)] pointer-events-none" />
+            <div className="relative space-y-12">
+              <div className="text-center max-w-3xl mx-auto space-y-4">
+                <span className="text-gold-accent font-medium uppercase tracking-[0.2em] text-xs block">
+                  Visit VINA MAKHANA
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest-green">
+                  Visit VINA MAKHANA
+                </h2>
+                <p className="text-sm sm:text-base text-walnut-brown/80 leading-relaxed">
+                  We prepare fresh homemade flavoured makhana in small batches using premium ingredients. Visit us or contact us anytime.
+                </p>
+              </div>
+
+              <div className="grid gap-8 md:grid-cols-2 items-stretch">
+                <div className="glass-panel rounded-[2rem] border border-white/50 shadow-xl p-8 h-full flex flex-col">
+                  <div className="space-y-6 flex-1">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 text-forest-green">
+                        <MapPin className="w-5 h-5 text-gold-accent" />
+                        <h3 className="font-serif text-2xl font-bold">Contact & Visit Us</h3>
+                      </div>
+                      <p className="text-sm text-walnut-brown/80 leading-relaxed">
+                        Reach our handcrafted makhana kitchen for premium flavours, quick support, and elegant ordering convenience.
+                      </p>
+                    </div>
+
+                    <div className="space-y-5 text-sm text-walnut-brown">
+                      <div className="flex gap-4">
+                        <div className="rounded-3xl bg-forest-green/10 p-3 text-forest-green shrink-0">
+                          <span className="text-lg">📍</span>
+                        </div>
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.36em] text-gold-accent font-semibold">Address</p>
+                          <p className="mt-2 font-semibold text-forest-green leading-relaxed">
+                            Navkar Heights,
+                            <br />Ognaj Circle,
+                            <br />Ognaj,
+                            <br />Ahmedabad – 380060
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="rounded-3xl bg-forest-green/10 p-3 text-forest-green shrink-0">
+                          <span className="text-lg">📞</span>
+                        </div>
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.36em] text-gold-accent font-semibold">Phone</p>
+                          <p className="mt-2 font-semibold text-forest-green">+91 63563 90666</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="rounded-3xl bg-forest-green/10 p-3 text-forest-green shrink-0">
+                          <span className="text-lg">✉</span>
+                        </div>
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.36em] text-gold-accent font-semibold">Email</p>
+                          <p className="mt-2 font-semibold text-forest-green">vinamakhana1607@gmail.com</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3 pt-6">
+                    <button
+                      type="button"
+                      onClick={openDirections}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-forest-green px-5 py-3 text-sm font-semibold text-white shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-accent"
+                    >
+                      <span>📍</span>
+                      <span>Get Directions</span>
+                    </button>
+                    <a
+                      href="tel:+916356390666"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-light-beige bg-white px-5 py-3 text-sm font-semibold text-forest-green shadow-sm transition-all duration-300 hover:border-gold-accent hover:bg-forest-green/5"
+                    >
+                      <span>📞</span>
+                      <span>Call Now</span>
+                    </a>
+                    <a
+                      href="https://wa.me/916356390666"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-light-beige bg-white px-5 py-3 text-sm font-semibold text-forest-green shadow-sm transition-all duration-300 hover:border-gold-accent hover:bg-forest-green/5"
+                    >
+                      <span>💬</span>
+                      <span>WhatsApp Us</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="h-full flex flex-col rounded-[2rem] overflow-hidden border border-light-beige/50 shadow-xl glass-panel">
+                  <div className="p-8">
+                    <div className="flex items-center gap-3 text-forest-green mb-4">
+                      <span className="text-2xl">📍</span>
+                      <div>
+                        <h3 className="font-serif text-2xl font-bold">Find Us on Google Maps</h3>
+                        <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed max-w-xl">
+                          Tap the map or click "Get Directions" to instantly start navigation to VINA MAKHANA.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1 rounded-[1.75rem] overflow-hidden border-t border-light-beige/50 shadow-inner bg-brand-bg">
+                    {!mapLoadError ? (
+                      <iframe
+                        title="VINA MAKHANA Location Map"
+                        src={mapEmbedUrl}
+                        loading="lazy"
+                        className="w-full h-full min-h-[360px]"
+                        frameBorder="0"
+                        allowFullScreen
+                        onError={() => setMapLoadError(true)}
+                      />
+                    ) : (
+                      <div className="flex min-h-[360px] flex-col items-center justify-center gap-5 bg-white/90 p-8 text-center text-walnut-brown">
+                        <div className="rounded-3xl border border-light-beige/60 bg-forest-green/5 p-5 shadow-inner">
+                          <MapPin className="w-8 h-8 text-gold-accent mx-auto" />
+                        </div>
+                        <div className="space-y-3 max-w-lg">
+                          <h3 className="text-xl font-bold text-forest-green">Map unavailable right now</h3>
+                          <p className="text-sm text-walnut-brown/80 leading-relaxed">
+                            The map could not load, but our premium location and navigation support remain ready.
+                          </p>
+                          <p className="text-sm font-semibold text-forest-green">
+                            Navkar Heights, Ognaj Circle, Ognaj, Ahmedabad - 380060
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={openDirections}
+                          className="mt-4 inline-flex items-center gap-2 rounded-full bg-forest-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-accent"
+                        >
+                          <span>📍 Get Directions</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+                <div className="rounded-[1.75rem] border border-light-beige/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-3xl">🌿</p>
+                  <h3 className="font-serif text-lg font-bold text-forest-green mt-4">100% Homemade</h3>
+                  <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed">Prepared fresh in small batches.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-light-beige/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-3xl">⭐</p>
+                  <h3 className="font-serif text-lg font-bold text-forest-green mt-4">Premium Quality</h3>
+                  <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed">Only carefully selected premium makhana.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-light-beige/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-3xl">🛡</p>
+                  <h3 className="font-serif text-lg font-bold text-forest-green mt-4">Hygienically Packed</h3>
+                  <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed">Clean, safe and food-grade packaging.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-light-beige/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-3xl">🚚</p>
+                  <h3 className="font-serif text-lg font-bold text-forest-green mt-4">Fast WhatsApp Ordering</h3>
+                  <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed">Quick response and easy ordering.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-light-beige/60 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1">
+                  <p className="text-3xl">❤️</p>
+                  <h3 className="font-serif text-lg font-bold text-forest-green mt-4">Made With Care</h3>
+                  <p className="mt-2 text-sm text-walnut-brown/80 leading-relaxed">Every pack is prepared with love and attention.</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* ---------------------------------------------------- */}
@@ -774,62 +976,6 @@ export const Contact: React.FC = () => {
                 ))}
               </div>
             )}
-          </div>
-        </div>
-
-        {/* Elegant stylized Mock Google Map Card */}
-        <div id="contact-map-section" className="border-t border-light-beige/50 pt-16">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="font-serif text-2xl font-bold text-forest-green">Visit Our Corporate Space</h2>
-            <p className="text-xs text-walnut-brown/70 font-sans mt-2">
-              Located in the premium business tech corridor of Noida, Uttar Pradesh.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl border border-light-beige p-4 sm:p-6 shadow-md overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            {/* Mock Map graphics */}
-            <div className="lg:col-span-8 bg-brand-bg rounded-2xl min-h-[300px] border border-light-beige/60 p-6 flex flex-col justify-between relative overflow-hidden group">
-              {/* Map grid aesthetic */}
-              <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #6B4E3D 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-              
-              {/* Stylized road blocks and indicators */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-full h-[2px] bg-gold-accent/30 rotate-12" />
-                <div className="w-full h-[2px] bg-gold-accent/30 -rotate-45" />
-                <div className="absolute w-40 h-40 bg-gold-accent/10 rounded-full" />
-                {/* Main pin marker */}
-                <div className="absolute flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-forest-green text-gold-accent flex items-center justify-center shadow-lg border-2 border-white animate-bounce">
-                    <MapPin className="w-4 h-4 fill-gold-accent stroke-none" />
-                  </div>
-                  <span className="bg-forest-green text-white text-[9px] font-bold px-2 py-1 rounded shadow-md mt-1 border border-gold-accent/20">VINA MAKHANA</span>
-                </div>
-              </div>
-
-              {/* Map floating controls mock */}
-              <div className="flex justify-between items-start relative z-10">
-                <span className="bg-white/80 backdrop-blur-sm px-3 py-1 rounded-lg text-[9px] uppercase font-bold tracking-wider border border-light-beige">Virtual Satellite Map</span>
-                <span className="bg-white/80 backdrop-blur-sm px-3 py-1 rounded-lg text-[9px] font-mono border border-light-beige">28.6273° N, 77.3725° E</span>
-              </div>
-              <div className="flex justify-end space-x-2 relative z-10">
-                <button className="w-8 h-8 rounded bg-white text-walnut-brown border border-light-beige flex items-center justify-center font-bold text-sm shadow hover:bg-brand-bg transition-colors">+</button>
-                <button className="w-8 h-8 rounded bg-white text-walnut-brown border border-light-beige flex items-center justify-center font-bold text-sm shadow hover:bg-brand-bg transition-colors">-</button>
-              </div>
-            </div>
-
-            {/* Address description card */}
-            <div className="lg:col-span-4 text-left p-4 space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-gold-accent">VINA Logistics Hub</span>
-              <h3 className="font-serif text-xl font-bold text-forest-green">Premium Dispatch Center</h3>
-              <p className="text-xs text-walnut-brown/80 font-sans leading-relaxed">
-                Our main packaging hub and logistics cell is strategically situated near core expressways, enabling fast climate-controlled dispatches to every pincode in India.
-              </p>
-              <div className="space-y-2 pt-2 text-xs text-walnut-brown/70 font-sans">
-                <p>📍 Navkar Heights, Ognaj Circle, Ognaj, Ahmedabad - 380060</p>
-                <p>📞 +91 63563 90666</p>
-                <p>🌐 www.vinamakhana.com</p>
-              </div>
-            </div>
           </div>
         </div>
 
